@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CourseForm from "./CouseForm";
 
 import * as courseApi from "../api/courseApi";
@@ -14,6 +14,12 @@ export const Course = (props) => {
     authorId: null,
     category: "",
   });
+
+  useEffect(() => {
+    const slug = props.match.params.slug;
+    if (slug)
+      courseApi.getCourseBySlug(slug).then((_course) => setCourse(_course));
+  }, [props.match.params.slug]);
 
   const handleChange = ({ target }) => {
     setCourse({ ...course, [target.name]: target.value });

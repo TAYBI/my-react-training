@@ -21,7 +21,7 @@ function CourseForm({ course, onChange, onSubmit, errors }) {
         label="Author"
         error={errors.authorId}
         onChange={onChange}
-        value={course.authorId || ""}
+        value={course.authorId + "" || ""}
         className="form-control"
       />
 
