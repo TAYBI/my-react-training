@@ -1,7 +1,8 @@
 import React from "react";
 import { TextInput } from "./common/TextInput";
+import { SelectInput } from "./common/SelectInput";
 
-function CourseForm({ course, onChange, onSubmit }) {
+function CourseForm({ course, onChange, onSubmit, errors }) {
   return (
     <form onSubmit={onSubmit}>
       <TextInput
@@ -10,25 +11,19 @@ function CourseForm({ course, onChange, onSubmit }) {
         label="Title"
         onChange={onChange}
         name="title"
+        error={errors.title}
         value={course.title}
       />
 
-      <div className="form-group">
-        <label htmlFor="author">Author</label>
-        <div className="field">
-          <select
-            id="author"
-            name="authorId"
-            onChange={onChange}
-            value={course.authorId || ""}
-            className="form-control"
-          >
-            <option value="" />
-            <option value="1">Cory House</option>
-            <option value="2">Scott Allen</option>
-          </select>
-        </div>
-      </div>
+      <SelectInput
+        id="author"
+        name="authorId"
+        label="Author"
+        error={errors.authorId}
+        onChange={onChange}
+        value={course.authorId || ""}
+        className="form-control"
+      />
 
       <TextInput
         type="text"
@@ -36,6 +31,7 @@ function CourseForm({ course, onChange, onSubmit }) {
         label="Category"
         onChange={onChange}
         name="category"
+        error={errors.category}
         value={course.category}
       />
 
