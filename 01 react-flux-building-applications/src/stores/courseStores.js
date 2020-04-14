@@ -1,5 +1,5 @@
 import { EventEmitter } from "events";
-import dispatcher from "../appDispatcher";
+import Dispatcher from "../appDispatcher";
 import actionTypes from "../actions/actionTypes";
 
 const CHANGE_EVENT = "change";
@@ -30,7 +30,7 @@ class CourseStore extends EventEmitter {
 
 const store = new CourseStore();
 
-dispatcher.register((action) => {
+Dispatcher.register((action) => {
   switch (action.actionType) {
     case actionTypes.CRAETE_COURSE:
       _courses.push(action.course);

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { getCourses } from "../api/courseApi";
 import CoursesListe from "./CoursesListe";
 import { Link } from "react-router-dom";
+import courseStore from "../stores/courseStores";
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    getCourses().then((_courses) => setCourses(_courses));
+    setCourses(courseStore.getCourses());
   }, []);
 
   return (
