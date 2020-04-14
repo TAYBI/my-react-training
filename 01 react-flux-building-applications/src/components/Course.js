@@ -10,6 +10,7 @@ export const Course = (props) => {
   const [course, setCourse] = useState({
     id: null,
     title: "",
+    slug: "",
     authorId: null,
     category: "",
   });
