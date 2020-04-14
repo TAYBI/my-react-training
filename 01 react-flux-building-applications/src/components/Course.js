@@ -9,16 +9,18 @@ export const Course = (props) => {
   const [errors, setErrors] = useState({});
   const [course, setCourse] = useState({
     id: null,
-    slug: "",
     title: "",
     authorId: null,
     category: "",
   });
 
   useEffect(() => {
-    const slug = props.match.params.slug;
+    let slug = props.match.params.slug;
+
     if (slug)
-      courseApi.getCourseBySlug(slug).then((_course) => setCourse(_course));
+      courseApi.getCourseBySlug(slug).then((_course) => {
+        setCourse(_course);
+      });
   }, [props.match.params.slug]);
 
   const handleChange = ({ target }) => {
@@ -38,7 +40,6 @@ export const Course = (props) => {
   };
 
   const handleSubmit = (event) => {
-    // debugger;
     event.preventDefault();
     if (!formIsValide()) return;
     courseApi.saveCourse(course).then(() => {
@@ -46,7 +47,6 @@ export const Course = (props) => {
       toast.success("Course saved!");
     });
   };
-
   return (
     <>
       <div className="jumbotron bg-dark text-white">

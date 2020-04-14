@@ -10,10 +10,10 @@ export const SelectInput = (props) => {
       <div className="field">
         <select
           id={props.id}
+          value={props.authorId}
           type={props.type}
           onChange={props.onChange}
           name={props.name}
-          value={props.authorId || ""}
           className="form-control"
         >
           <option value="" />
