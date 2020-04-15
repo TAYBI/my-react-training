@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CoursesListe from "./CoursesListe";
 import { Link } from "react-router-dom";
-import courseStore from "../stores/courseStores";
+import courseStore from "../stores/courseStore";
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState([]);

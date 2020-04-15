@@ -3,8 +3,9 @@ import CourseForm from "./CouseForm";
 
 import { toast } from "react-toastify";
 
-import courseStore from "../stores/courseStores";
+import courseStore from "../stores/courseStore";
 import * as courseAction from "../actions/courseAction";
+// import * as courseApi from "../api/courseApi";
 
 export const Course = (props) => {
   const [errors, setErrors] = useState({});
@@ -18,7 +19,6 @@ export const Course = (props) => {
 
   useEffect(() => {
     let slug = props.match.params.slug;
-
     if (slug) setCourse(courseStore.getCoursesBySlug(slug));
   }, [props.match.params.slug]);
 

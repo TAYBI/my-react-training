@@ -38,7 +38,7 @@ Dispatcher.register((action) => {
       break;
 
     default:
-      break;
+    // DO NOTHING;
   }
 });
 
