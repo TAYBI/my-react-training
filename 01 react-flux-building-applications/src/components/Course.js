@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 
 import courseStore from "../stores/courseStore";
 import * as courseAction from "../actions/courseAction";
-// import * as courseApi from "../api/courseApi";
 
 export const Course = (props) => {
   const [errors, setErrors] = useState({});
+  const [courses, setCourses] = useState(courseStore.getCourses());
   const [course, setCourse] = useState({
     id: null,
     title: "",
@@ -18,9 +18,18 @@ export const Course = (props) => {
   });
 
   useEffect(() => {
+    courseStore.addChangeListener(onChange);
     let slug = props.match.params.slug;
-    if (slug) setCourse(courseStore.getCoursesBySlug(slug));
-  }, [props.match.params.slug]);
+
+    if (courses.length === 0) courseAction.loadCouses();
+    else if (slug) setCourse(courseStore.getCoursesBySlug(slug));
+
+    return () => courseStore.removeChangeListener(onChange);
+  }, [courses.length, props.match.params.slug]);
+
+  const onChange = () => {
+    setCourses(courseStore.getCourses());
+  };
 
   const handleChange = ({ target }) => {
     setCourse({ ...course, [target.name]: target.value });

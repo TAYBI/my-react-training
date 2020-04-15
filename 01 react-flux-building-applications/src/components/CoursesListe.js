@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const CoursesListe = ({ courses }) => {
+const CoursesListe = ({ courses, onDelete }) => {
   return (
     <table className="table table-dark">
       <thead>
         <tr>
+          <th>&nbsp;</th>
           <th>Title</th>
           <th>Author ID</th>
           <th>Category</th>
@@ -16,6 +17,15 @@ const CoursesListe = ({ courses }) => {
         {courses.map((course) => {
           return (
             <tr key={course.id}>
+              <th>
+                <button
+                  type="button"
+                  onClick={() => onDelete(course.id)}
+                  className="btn btn-danger text-white"
+                >
+                  Delete
+                </button>
+              </th>
               <td>
                 <Link className="text-light" to={`/course/${course.slug}`}>
                   {course.title}
