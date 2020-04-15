@@ -12,7 +12,7 @@ export const TextInput = (props) => {
         <input
           id={props.id}
           type={props.type}
-          value={props.title}
+          value={props.value}
           onChange={props.onChange}
           name={props.name}
           className="form-control"

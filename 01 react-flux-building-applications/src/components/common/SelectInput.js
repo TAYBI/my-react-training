@@ -10,7 +10,7 @@ export const SelectInput = (props) => {
       <div className="field">
         <select
           id={props.id}
-          value={props.authorId}
+          value={props.value}
           type={props.type}
           onChange={props.onChange}
           name={props.name}

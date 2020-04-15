@@ -2,11 +2,22 @@ import * as courseApi from "../api/courseApi";
 import dispatcher from "../appDispatcher";
 import actionTypes from "./actionTypes";
 
-export function courseAction(course) {
+export function saveCourse(course) {
   return courseApi.saveCourse(course).then((savedCourse) => {
     dispatcher.dispatch({
-      actionType: actionTypes.CRAETE_COURSE,
+      actionType: savedCourse.id
+        ? actionTypes.UPDATE_COURSE
+        : actionTypes.CRAETE_COURSE,
       course: savedCourse,
+    });
+  });
+}
+
+export function loadCouses() {
+  return courseApi.getCourses().then((courses) => {
+    dispatcher.dispatch({
+      actionType: actionTypes.LOAD_COURSES,
+      courses,
     });
   });
 }
