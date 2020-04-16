@@ -42,6 +42,7 @@ const CoursesListe = ({ courses, onDelete }) => {
 };
 
 CoursesListe.prototype = {
+  onDelete: PropTypes.func.isRequired,
   course: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

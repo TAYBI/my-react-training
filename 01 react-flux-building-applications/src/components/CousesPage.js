@@ -10,7 +10,7 @@ export default function CoursesPage() {
 
   useEffect(() => {
     courseStore.addChangeListener(onChange);
-    if (courses.length === 0) loadCouses();
+    if (courseStore.getCourses().length === 0) loadCouses();
     return () => courseStore.removeChangeListener(onChange);
   }, []);
 

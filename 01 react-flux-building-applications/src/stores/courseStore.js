@@ -38,7 +38,7 @@ Dispatcher.register((action) => {
       break;
 
     case actionTypes.UPDATE_COURSE:
-      _courses.map((course) =>
+      _courses = _courses.map((course) =>
         course.id === action.course.id ? action.course : course
       );
       store.emitChange();
