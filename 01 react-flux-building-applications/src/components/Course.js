@@ -19,13 +19,18 @@ export const Course = (props) => {
 
   useEffect(() => {
     courseStore.addChangeListener(onChange);
+
     let slug = props.match.params.slug;
+    const _course = courseStore.getCoursesBySlug(slug);
 
     if (courses.length === 0) courseAction.loadCouses();
-    else if (slug) setCourse(courseStore.getCoursesBySlug(slug));
+    else if (slug) {
+      if (!_course) props.history.push("/404");
+      else setCourse(courseStore.getCoursesBySlug(slug));
+    }
 
     return () => courseStore.removeChangeListener(onChange);
-  }, [courses.length, props.match.params.slug]);
+  }, [courses.length, props.match.params.slug, props.history]);
 
   const onChange = () => {
     setCourses(courseStore.getCourses());

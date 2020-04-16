@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const CoursesListe = ({ courses, onDelete }) => {
+const CoursesListe = ({ courses, onDelete, handleAutgorName }) => {
   return (
     <table className="table table-dark">
       <thead>
@@ -31,7 +31,7 @@ const CoursesListe = ({ courses, onDelete }) => {
                   {course.title}
                 </Link>
               </td>
-              <td>{course.authorId}</td>
+              <td>{handleAutgorName(course.authorId)}</td>
               <td>{course.category}</td>
             </tr>
           );
