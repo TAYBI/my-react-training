@@ -5,15 +5,11 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 
 class CoursesPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      course: {
-        title: "",
-      },
-    };
-  }
+  state = {
+    course: {
+      title: "",
+    },
+  };
 
   handleChange = (event) => {
     const course = { ...this.state.course, title: event.target.value };
@@ -28,12 +24,12 @@ class CoursesPage extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <h1>Courses</h1>
-        <h2>Add Course</h2>
+        <h2>Courses</h2>
+        <h3>Add Course</h3>
         <input
           type="text"
-          value={this.state.course.title}
           onChange={this.handleChange}
+          value={this.state.course.title}
         />{" "}
         <input type="submit" value="Save" />
         {this.props.courses.map((course) => (
@@ -44,20 +40,19 @@ class CoursesPage extends React.Component {
   }
 }
 
-CoursesPage.prototype = {
+CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(actoin) {
+function mapStateToProps(state) {
   return {
-    state: actoin.course,
+    courses: state.courses,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    // createCourse: (course) => dispatch(courseActions.createCourse(course)),
     actions: bindActionCreators(courseActions, dispatch),
   };
 }
