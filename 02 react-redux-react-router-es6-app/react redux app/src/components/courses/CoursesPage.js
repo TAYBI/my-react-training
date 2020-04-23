@@ -8,6 +8,7 @@ import CourseList from "./CoursesList";
 
 class CoursesPage extends React.Component {
   componentDidMount() {
+    // eslint-disable-next-line react/prop-types
     const { courses, authors, actions } = this.props;
 
     if (courses.length === 0)
