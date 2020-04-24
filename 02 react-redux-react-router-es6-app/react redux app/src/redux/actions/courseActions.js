@@ -1,5 +1,6 @@
 import * as types from "./actionTypes";
 import * as courseApi from "../../api/courseApi";
+import { beginApiCall } from "./apiStatusAction";
 
 // export function createCourse(course) {
 //   return { type: types.CREATE_COURSE, course };
@@ -11,6 +12,7 @@ import * as courseApi from "../../api/courseApi";
 
 export function loadCourses() {
   return function (dispacth) {
+    dispacth(beginApiCall());
     return courseApi
       .getCourses()
       .then((courses) =>
@@ -22,6 +24,7 @@ export function loadCourses() {
 export function saveCourse(course) {
   // eslint-disable-next-line no-unused-vars
   return function (dispacth, getState) {
+    dispacth(beginApiCall());
     return courseApi.saveCourse(course).then((savedCourse) => {
       course.id
         ? dispacth({ type: types.UPDATE_COURSE_SUCCESS, course: savedCourse })
