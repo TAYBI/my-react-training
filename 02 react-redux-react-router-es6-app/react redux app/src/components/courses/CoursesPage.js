@@ -24,13 +24,13 @@ class CoursesPage extends React.Component {
       actions.loadAuthors().catch((err) => console.log("Error Authors " + err));
   }
 
-  handleDeleteCourse = (course) => {
+  handleDeleteCourse = async (course) => {
     toast.success("course deleted !");
-    this.props.actions
-      .deleteCourse(course)
-      .catch((err) =>
-        toast.error(`faild to delete. ${err}`, { autoClose: false })
-      );
+    try {
+      await this.props.actions.deleteCourse(course);
+    } catch (err) {
+      toast.error(`faild to delete. ${err}`, { autoClose: false });
+    }
   };
 
   render() {
