@@ -6,6 +6,14 @@ import { beginApiCall, apiCallError } from "./apiStatusAction";
 //   return { type: types.CREATE_COURSE, course };
 // }
 
+export function createCourseSuccess(course) {
+  return { type: types.CREATE_COURSE_SUCCESS, course };
+}
+
+export function updateCourseSuccess(course) {
+  return { type: types.UPDATE_COURSE_SUCCESS, course };
+}
+
 // export function loadCoursesSuccess(courses) {
 //   return { type: types.LOAD_COURSES_SUCCESS, courses };
 // }
@@ -33,11 +41,8 @@ export function saveCourse(course) {
       .saveCourse(course)
       .then((savedCourse) => {
         course.id
-          ? dispacth({ type: types.UPDATE_COURSE_SUCCESS, course: savedCourse })
-          : dispacth({
-              type: types.CREATE_COURSE_SUCCESS,
-              course: savedCourse,
-            });
+          ? dispacth(updateCourseSuccess(savedCourse))
+          : dispacth(createCourseSuccess(savedCourse));
       })
       .catch((error) => {
         dispacth(apiCallError(error));
